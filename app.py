@@ -16,7 +16,7 @@ load_dotenv()
 
 app = Flask(__name__)
 # A secret key é usada pelo Flask e pelo Flask-Admin e é NECESSÁRIA para o uso de 'session'
-app.secret_key = "uma_chave_secreta_forte_aqui"  # Mantenha-a secreta e longa!
+app.secret_key = os.getenv("SECRET_KEY", "fallback_secreta_para_dev")
 
 # CONFIGURAÇÃO DO BANCO DE DADOS (SQLite)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
