@@ -1,0 +1,519 @@
+/* ===============================
+   ESTILO GERAL
+=============================== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fdf8;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.fundo-claro {
+    /* Define a cor do texto padrão como um cinza escuro para páginas claras */
+    color: #333333; /* Cor escura para o texto principal */
+    background-color: #f8fdf8; /* Mantém o fundo claro */
+}
+
+/* Garante que o conteúdo principal da notícia também use a cor escura */
+main p, 
+main ul,
+main h3 {
+    /* Herda a cor do body.fundo-claro, mas é bom garantir */
+    color: inherit; 
+}
+
+
+/* ===============================
+   CABEÇALHO
+=============================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    background-color: transparent;
+    transition: all 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+header.scrolled {
+    background-color: #006b43;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    padding: 10px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-shrink: 0;
+}
+
+nav a {
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+header.scrolled nav a {
+    color: #fff;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.2);
+    color: #ffffff;
+}
+
+.fundo-claro nav a {
+    color: #004d2a !important;
+}
+
+.fundo-claro header.scrolled nav a {
+    color: #fff !important;
+}
+
+header.scrolled nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+
+/* ===============================
+   BANNER
+=============================== */
+.banner {
+    height: 380px;
+    background-image: url('../static/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    color: white;
+    margin-bottom: 50px;
+    position: relative;
+    padding: 60px 80px;
+    box-sizing: border-box;
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    pointer-events: none;
+}
+
+/* Banner inner layout: imagem esquerda pequena, texto à esquerda (desktop); coluna em mobile */
+.banner-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    width: auto;
+    max-width: none;
+    position: relative;
+    z-index: 2;
+    padding-top: 20px;
+}
+
+.banner-figure {
+    flex: 0 0 140px;
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.banner-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) contrast(1.2) saturate(1.1);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.6);
+    flex: 0 0 auto;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 20px 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+
+.banner h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.banner p {
+    font-size: 18px;
+    max-width: 400px;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    opacity: 1;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.banner-sub {
+    font-weight: 500;
+    color: #e6f8ee;
+}
+
+/* ===============================
+   CONTEÚDO PRINCIPAL
+=============================== */
+/* A definição mais abaixo (padrão para páginas internas) controla o main;
+   removemos a versão duplicada que causava conflitos e espaçamentos inesperados.
+*/
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #004d2a;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-bottom: 3px solid #007f4f;
+    display: inline-block;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* ===============================
+   CARDS DE NOTÍCIAS
+=============================== */
+.cards-container {
+    display: block
+}
+
+.card {
+    background: white;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: stretch;
+    max-width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 35%;
+    /* Força proporção quadrada consistente: largura baseada em % e
+       aspect-ratio garante 1:1 (quadrado). object-fit:cover mantém
+       o enquadramento e corta o excesso sem distorcer. */
+    aspect-ratio: 1 / 1;
+    height: auto; /* calculado a partir da largura + aspect-ratio */
+    object-fit: cover;
+    /* Cantos arredondados somente nas bordas externas do card (lado esquerdo) */
+    border-radius: 10px 0 0 10px;
+    display: block;
+}
+
+.card-content {
+    padding: 30px;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-metadata {
+    font-size: 13px;
+    color: #007f4f;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.card-content h3 {
+    color: #006b43;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.card-content p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.card-content a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007f4f;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: 2px solid #007f4f;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    align-self: flex-start; /* Alinha o botão à esquerda dentro do flex container */
+}
+
+.card-content a:hover {
+    background-color: #007f4f;
+    color: white;
+}
+
+/* ===============================
+   RODAPÉ
+   O footer deve ocupar a largura total da viewport, mesmo quando o conteúdo
+   principal está centralizado com max-width. Usamos largura em vw e correção
+   de margem para neutralizar o contêiner pai.
+=============================== */
+footer {
+    background-color: #004d2a;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    flex-shrink: 0;
+    width: 100vw; /* ocupa toda a largura da janela */
+    margin-left: calc(50% - 50vw); /* centraliza quando o pai é limitado */
+}
+
+/* Conteúdo interno do footer (centra o texto dentro da área principal)
+   mantendo a largura do site para o conteúdo interno, se necessário. */
+.footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---------- PADRONIZAÇÃO DAS PÁGINAS INTERNAS ---------- */
+main {
+    flex: 1 0 auto; /* permite que o main cresça e empurre o footer para baixo */
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+main h2 {
+    color: #014d2f;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007a3d;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+main p, main li {
+    color: #333;
+    font-size: 1.05em;
+    line-height: 1.6em;
+}
+
+/* ---------- PÁGINA PARTICIPE ---------- */
+.participe-section {
+    text-align: center;
+    padding: 0;
+}
+
+.participe-section .section-title {
+    color: #006b43;
+}
+
+.participe-section p {
+    color: #444;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+/* Formulário da página participe: centra e limita largura para melhor leitura */
+#participeForm {
+    display: block;
+    max-width: 700px; /* largura máxima do formulário */
+    width: 100%;
+    margin: 0 auto; /* centraliza dentro do main */
+    background: #ffffff; /* fundo branco para destacar do main */
+    padding: 28px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    text-align: left; /* inputs alinhados à esquerda dentro do formulário */
+}
+
+#participeForm input,
+#participeForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #b6e2c2;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#participeForm button {
+    background-color: #007a3d;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 220px; /* limita a largura do botão em telas grandes */
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+    display: block;
+    margin-left: auto; /* posiciona o botão à direita dentro do formulário */
+}
+
+#participeForm button:hover {
+    background-color: #005f30;
+}
+
+/* Avisos dentro do formulário */
+.alerta {
+    margin: 0 auto 10px auto;
+    max-width: 700px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    display: none;
+    font-weight: 600;
+}
+.alerta.sucesso { background: #e6f9ed; color: #045a2f; display: block; }
+.alerta.erro    { background: #ffe9e9; color: #7a1b1b; display: block; }
+
+
+/* ---------- MENSAGEM DE RETORNO ---------- */
+.mensagem {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #dfffe0;
+    color: #015f2f;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
+/* Media Query: Para telas menores (Ex: celulares), volta ao layout vertical */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column; /* Volta para o layout vertical */
+    }
+    .card img, .card-content {
+        width: 100%;
+        max-width: none;
+    }
+    .card img {
+        width: 100%;
+        aspect-ratio: 1 / 1; /* quadrado em mobile */
+        height: auto;
+        /* Em mobile a imagem fica no topo do card, arredondamos as bordas superiores */
+        border-radius: 10px 10px 0 0;
+    }
+    .card-content {
+        padding: 20px;
+    }
+    
+    /* Banner responsivo em mobile: coluna com imagem no topo */
+    .banner {
+        height: auto;
+        padding: 30px 20px;
+        justify-content: flex-start;
+    }
+    
+    .banner-inner {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        text-align: left;
+        padding-top: 15px;
+    }
+    
+    .banner-figure {
+        flex: 0 0 120px;
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+    }
+    
+    .banner-content {
+        text-align: left;
+    }
+    
+    .banner h1 {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+    
+    .banner p {
+        font-size: 15px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        padding: 20px 15px;
+    }
+    
+    .banner-inner {
+        gap: 15px;
+    }
+    
+    .banner-figure {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .banner-content {
+        padding: 16px 18px;
+    }
+    
+    .banner h1 {
+        font-size: 26px;
+        margin-bottom: 6px;
+    }
+    
+    .banner p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+}

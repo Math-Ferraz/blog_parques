@@ -1,0 +1,10 @@
+# Ambientes virtuais
+venv/
+.venv/
+
+# Arquivos do Python/Flask
+__pycache__/
+*.pyc
+
+# Banco de Dados
+site.db

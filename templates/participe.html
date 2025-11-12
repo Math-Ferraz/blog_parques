@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participe - Parques Vivos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="fundo-claro">
+    <header class="scrolled">
+        <nav>
+            <a href="/">Importância Ambiental</a>
+            <a href="/atividades">Atividades</a>
+            <a href="/sobre">Sobre</a>
+            <a href="/participe" class="ativo">Participe</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="participe-section">
+            <h1 class="section-title">Envie sua sugestão</h1>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alerta {{ category }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <div id="alerta" class="alerta"></div>
+
+            <form id="participeForm" action="/participe" method="post">
+                <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
+                <input type="email" name="email" id="email" placeholder="Seu e-mail" required>
+                <textarea name="mensagem" id="mensagem" rows="5" placeholder="Sua ideia de atividade ou comentário" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-inner">
+            <p>© 2025 Parques Vivos | Projeto de Extensão Universitária</p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

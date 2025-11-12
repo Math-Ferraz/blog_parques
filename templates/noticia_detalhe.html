@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ noticia.titulo }} - Parques Vivos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="fundo-claro">
+    <header class="scrolled">
+        <nav>
+            <a href="/"> Importância Ambiental</a>
+            <a href="/atividades"> Atividades</a>
+            <a href="/sobre"> Sobre</a>
+            <a href="/participe"> Participe</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1 class="section-title">{{ noticia.titulo }}</h1>
+            
+            <p class="post-metadata" style="color: #666;">{{ noticia.metadata_info }}</p>
+            
+            <img src="{{ url_for('static', filename='img/' + noticia.imagem) }}" alt="{{ noticia.titulo }}" style="width: 100%; height: auto; border-radius: 8px; margin: 20px 0;">
+
+            {{ noticia.conteudo_principal | safe }}
+            
+            <a href="/" style="display: block; margin-top: 30px; text-align: center; color: #007f4f;">&larr; Voltar para o Blog</a>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p> © 2025 Parques Vivos | Projeto de Extensão Universitária </p>
+        </div>
+    </footer>
+</body>
+</html>

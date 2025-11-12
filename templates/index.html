@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importância Ambiental dos Parques</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/"> Importância Ambiental</a>
+            <a href="/atividades"> Atividades</a>
+            <a href="/sobre"> Sobre</a>
+            <a href="/participe"> Participe</a>
+        </nav>
+    </header>
+    
+    <!-- Banner Principal -->
+    <section class="banner">
+        <div class="banner-inner">
+            <div class="banner-figure">
+                <img src="{{ url_for('static', filename='img/icon_parque_vivos.png') }}" alt="Símbolo - Parques Vivos">
+            </div>
+            <div class="banner-content">
+                <h1>Parques Vivos</h1>
+                <p class="banner-sub">Promovendo sustentabilidade e qualidade de vida na Zona Sul de São Paulo</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <h2 class="section-title">ÚLTIMAS POSTAGENS</h2>
+
+        <div class="cards-container">
+        
+        {% for post in noticias %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/' + post.imagem) }}" alt="{{ post.titulo }}">
+            <div class="card-content">
+                <p class="post-metadata">{{ post.tags }}</p>
+                <h3>{{ post.titulo }}</h3>
+                <p>{{ post.conteudo_principal | striptags | truncate(150) }}</p>
+                <a href="{{ url_for('exibir_noticia', noticia_id=post.id) }}">LEIA MAIS</a>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p> © 2025 Parques Vivos | Projeto de Extensão Universitária </p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll',function(){
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+
+</body>
+</html>
